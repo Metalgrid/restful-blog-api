@@ -14,7 +14,21 @@ app.use(logger('dev'));
 app.use(validators);
 
 app.get('/', (req, res) => {
-    res.send("<p>Hi, this is the blog API</p>");
+    res.send(`
+    <h2>RESTful blog API</h2>
+    <p>Supported methods</p>
+    <pre>
+    GET /posts
+    POST /posts
+    PUT /posts/:postId
+    DELETE /posts/:postId
+    
+    GET /posts/:postId/comments
+    POST /posts/:postId/comments
+    PUT /posts/:postId/comments/:commentId
+    DELETE /posts/:postId/comments/:commentId
+    </pre>
+    `);
 });
 
 /* Blog Posts */

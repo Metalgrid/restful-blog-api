@@ -1,27 +1,30 @@
 const request = require('sync-request');
 const mocha = require('mocha');
 const expect = require('expect');
+const faker = require('faker');
 
 let customHeaders = {
     'content-type': 'application/json'
 }
 
 let initialPost = {
-    title: "My frist blog post!",
-    content: "Welcome to my tech blog! I'll be discussing some good tehnologi in here"
+    author: faker.name.findName(),
+    title: faker.lorem.sentence(),
+    content: faker.lorem.paragraph()
 }
 
 let fixedPost = {
-    title: "My first blog post!",
-    content: "Welcome to my tech blog! This is where I'll be reviewing technology solutions for the better web"
+    title: faker.lorem.sentence(),
+    content: faker.lorem.paragraph()
 }
 
 let initalComment = {
-    text: "Hi, looking forward to see what you're on to."
+    author: faker.name.findName(),
+    text: faker.lorem.paragraph()
 }
 
 let fixedComment = {
-    text: "Hello there, I can't wait to see your techology findings!"
+    text: faker.lorem.paragraph()
 }
 
 describe('Test the blog API', () => {
@@ -51,7 +54,7 @@ describe('Test the blog API', () => {
     });
 
     it('Update the initial blog post', testFinished => {
-        let res = request('PUT', `http://localhost:3000/posts/${postId}`,
+        let res = request('PUT', `http://localhost:3000/posts/${postId}/`,
             {
                 headers: customHeaders,
                 json: fixedPost
@@ -101,14 +104,14 @@ describe('Test the blog API', () => {
     });
 
     it('Delete the blog post comment', testFinished => {
-        let res = request('DELETE', `http://localhost:3000/posts/${postId}/comments/${commentId}`);
+        let res = request('DELETE', `http://localhost:3000/posts/${postId}/comments/${commentId}/`);
         expect(res.statusCode).toEqual(204);
 
         testFinished();
     });
 
     it('Delete the blog post', testFinished => {
-        let res = request('DELETE', `http://localhost:3000/posts/${postId}`);
+        let res = request('DELETE', `http://localhost:3000/posts/${postId}/`);
         expect(res.statusCode).toEqual(204);
 
         testFinished();
