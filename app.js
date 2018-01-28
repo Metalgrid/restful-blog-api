@@ -24,10 +24,10 @@ app.put('/posts/:postId', routes.posts.updatePost);
 app.delete('/posts/:postId', routes.posts.removePost);
 
 /* Blog Post Comments */
-app.use('/posts/:postId/comments', routes.comments.getComments);
-app.use('/posts/:postId/comments', routes.comments.addComment);
-app.use('/posts/:postId/comments/:commentId', routes.comments.updateComment);
-app.use('/posts/:postId/comments/:commentId', routes.comments.removeComment);
+app.get('/posts/:postId/comments', routes.comments.getComments);
+app.post('/posts/:postId/comments', routes.comments.addComment);
+app.put('/posts/:postId/comments/:commentId', routes.comments.updateComment);
+app.delete('/posts/:postId/comments/:commentId', routes.comments.removeComment);
 
 /* Run server */
 app.listen(3000);

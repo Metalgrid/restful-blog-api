@@ -9,6 +9,9 @@ let getPosts = () => {
 }
 
 let getPost = (postId) => {
+    if (!postId)
+        throw 'Invalid data';
+
     return store.posts.find(
         (post) => {
             return post.id == postId;
@@ -17,7 +20,6 @@ let getPost = (postId) => {
 }
 
 let addPost = (data) => {
-    console.log('Creating post with data', data);
     let post = Object.assign({}, data);
     post.id = uuid4();
     if (!post.comments) post.comments = [];
@@ -30,7 +32,7 @@ let updatePost = (postId, data) => {
     let index = store.posts.indexOf(oldPost);
     let newPost = Object.assign(oldPost, data);
     store.posts.splice(index, 1, newPost);
-    return newPost.id;
+    return newPost;
 }
 
 let removePost = (postId) => {
@@ -40,8 +42,9 @@ let removePost = (postId) => {
 }
 
 module.exports = {
-    getPosts: getPosts,
-    addPost: addPost,
-    updatePost: updatePost,
-    removePost: removePost
+    getPost,
+    getPosts,
+    addPost,
+    updatePost,
+    removePost
 }

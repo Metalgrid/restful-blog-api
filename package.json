@@ -4,7 +4,7 @@
   "description": "DEV283X: RESTful blog API",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node_modules/.bin/mocha tests",
     "dev": "node_modules/.bin/node-dev app.js"
   },
   "author": "Iskren Hadzhinedev <i.hadzhinedev@gmail.com>",
@@ -17,6 +17,9 @@
     "uuid": "3.2.1"
   },
   "devDependencies": {
-    "node-dev": "3.1.3"
+    "expect": "22.1.0",
+    "mocha": "5.0.0",
+    "node-dev": "3.1.3",
+    "sync-request": "4.1.0"
   }
 }
